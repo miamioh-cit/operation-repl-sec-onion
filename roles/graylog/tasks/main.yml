@@ -1,0 +1,12 @@
+- apt:
+    name: graylog-server
+    state: present
+
+- lineinfile:
+    path: /etc/graylog/server/server.conf
+    line: "http_bind_address = 0.0.0.0:9000"
+
+- systemd:
+    name: graylog-server
+    enabled: yes
+    state: started

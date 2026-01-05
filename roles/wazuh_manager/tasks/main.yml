@@ -1,0 +1,8 @@
+- get_url:
+    url: https://packages.wazuh.com/4.7/wazuh-install.sh
+    dest: /root/wazuh-install.sh
+    mode: "0755"
+
+- command: /root/wazuh-install.sh -a
+  args:
+    creates: /var/ossec/bin/wazuh-control

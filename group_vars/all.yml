@@ -1,0 +1,4 @@
+soc_mgmt_iface: eth0
+soc_monitor_iface: eth1
+timezone: America/New_York
+graylog_admin_pass: CHANGEME

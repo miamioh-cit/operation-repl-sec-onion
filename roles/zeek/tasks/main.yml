@@ -1,0 +1,25 @@
+- apt:
+    name: zeek
+    state: present
+
+- command: ip link set {{ soc_monitor_iface }} promisc on
+  changed_when: false
+
+- copy:
+    dest: /etc/systemd/system/zeek.service
+    content: |
+      [Unit]
+      Description=Zeek NSM
+      After=network.target
+
+      [Service]
+      ExecStart=/opt/zeek/bin/zeek -i {{ soc_monitor_iface }}
+      Restart=always
+
+      [Install]
+      WantedBy=multi-user.target
+
+- systemd:
+    name: zeek
+    enabled: yes
+    state: started

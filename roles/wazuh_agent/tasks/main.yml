@@ -1,0 +1,13 @@
+- apt:
+    name: wazuh-agent
+    state: present
+
+- lineinfile:
+    path: /var/ossec/etc/ossec.conf
+    regexp: '<address>.*</address>'
+    line: "<address>{{ hostvars[groups['sensor'][0]].ansible_host }}</address>"
+
+- systemd:
+    name: wazuh-agent
+    enabled: yes
+    state: started

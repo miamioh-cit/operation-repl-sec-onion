@@ -1,0 +1,12 @@
+- apt:
+    name: suricata
+    state: present
+
+- command: suricata-update
+  args:
+    creates: /var/lib/suricata/rules/suricata.rules
+
+- systemd:
+    name: suricata
+    enabled: yes
+    state: started
